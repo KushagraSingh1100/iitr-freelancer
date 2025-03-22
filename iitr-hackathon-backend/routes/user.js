@@ -7,8 +7,8 @@ const {
   // handleGetAdminPanel,
   // handleAdminLogin,
   // handleUserLogin,
-  // handleUserSignup,
-  handleRegister,   
+  handleUserSignup,
+  handleRegister,
   handleCreateProject,
 } = require("../controllers/users");
 const router = express.Router();
@@ -20,9 +20,9 @@ router.get("/home");
 router.get("/admin/panel");
 router.post("/admin/login");
 router.post("/user/login");
-router.post("/user/signup");
+router.post("/user/signup", handleUserSignup);
 router.post("/create/project", handleCreateProject);
-router.post("/register",handleRegister);
+router.post("/register", handleRegister);
 
 module.exports = router;
 

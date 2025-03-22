@@ -99,4 +99,27 @@ const handleCreateProject = async (req, res) => {
   }
 };
 
-module.exports = { handleRegister, handleCreateProject };
+const handleUserSignup = async (req, res) => {
+  try {
+    const { username, password, mail, role } = req.body;
+    const newUser = new User({
+      username,
+      password,
+      mail,
+      role,
+    });
+    const existingUser = await User.findOne({ mail });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists." });
+    }
+    await newUser.save();
+    res
+      .status(201)
+      .json({ message: "User created successfully!", user: newUser });
+  } catch (error) {
+    console.log("User signup error: ", error);
+    res.status(500).json({ message: "Failed to create user" });
+  }
+};
+
+module.exports = { handleRegister, handleCreateProject, handleUserSignup };

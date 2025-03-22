@@ -20,10 +20,6 @@ const userSchema = new Schema(
       enum: ["freelancer", "employer", "admin"],
       required: true,
     },
-    _id: {
-      type: String,
-      required: true,
-    },
     escrowAccountId: { type: String },
   },
   { timestamps: true }
